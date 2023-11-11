@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/domain/entities/users';
+import { User } from 'src/domain/entities/user';
 import { ToListUserResponse } from 'src/domain/mapping/user';
-import { ListUserResponse } from 'src/domain/responses/users/list';
+import { ListUserResponse } from 'src/domain/responses/user';
 import { Repository } from 'typeorm';
 
 @Injectable()

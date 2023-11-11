@@ -1,13 +1,32 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import {
+  ChiperServiceName,
+  CipherService,
+} from 'src/infrastructure/services/cipher';
 import { UsersController } from 'src/controllers/users';
-import { User } from 'src/domain/entities/users';
-import { CreateUserUseCase } from 'src/useCases/users/create';
-import { ListUsersUseCase } from 'src/useCases/users/list';
+import { User } from 'src/domain/entities/user';
+import {
+  GetUserUseCase,
+  ListUsersUseCase,
+  CreateUserUseCase,
+  UpdateUserUseCase,
+  DeleteUserUseCase,
+} from 'src/useCases/user';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
-  providers: [ListUsersUseCase, CreateUserUseCase],
+  providers: [
+    {
+      provide: ChiperServiceName,
+      useClass: CipherService,
+    },
+    ListUsersUseCase,
+    GetUserUseCase,
+    CreateUserUseCase,
+    UpdateUserUseCase,
+    DeleteUserUseCase,
+  ],
   controllers: [UsersController],
 })
 export class UsersModule {}

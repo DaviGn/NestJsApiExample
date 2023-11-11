@@ -3,3 +3,5 @@ export class CreateUserRequest {
   email: string;
   password: string;
 }
+
+export class UpdateUserRequest extends CreateUserRequest {}

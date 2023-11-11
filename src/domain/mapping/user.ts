@@ -1,13 +1,17 @@
-import { User } from '../entities/users';
-import { CreateUserResponse } from '../responses/users/create';
-import { ListUserResponse } from '../responses/users/list';
+import { User } from '../entities/user';
+import {
+  ListUserResponse,
+  GetUserResponse,
+  CreateUserResponse,
+  UpdateUserResponse,
+} from '../responses/user';
 
-export function ToCreateUserResponse({
-  id,
-  name,
-  email,
-}: User): CreateUserResponse {
-  return { id, name, email };
+export function ToGetUserResponse({ id, name, email }: User): GetUserResponse {
+  return {
+    id,
+    name,
+    email,
+  };
 }
 
 export function ToListUserResponse({
@@ -20,4 +24,20 @@ export function ToListUserResponse({
     name,
     email,
   };
+}
+
+export function ToCreateUserResponse({
+  id,
+  name,
+  email,
+}: User): CreateUserResponse {
+  return { id, name, email };
+}
+
+export function ToUpdateUserResponse({
+  id,
+  name,
+  email,
+}: User): UpdateUserResponse {
+  return { id, name, email };
 }
