@@ -38,7 +38,7 @@ export class SignInUseCase {
 
     if (!passwordValid) throw new UnauthorizedException();
 
-    const payload: JwtPayload = { email: user.email };
+    const payload: JwtPayload = { id: user.id, email: user.email };
     const accessToken: string = await this.jwtService.sign(payload);
 
     return {
