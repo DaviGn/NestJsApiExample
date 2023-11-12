@@ -7,7 +7,9 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateUserRequest, UpdateUserRequest } from 'src/domain/requests/user';
 import {
   GetUserResponse,
@@ -34,12 +36,14 @@ export class UsersController {
   ) {}
 
   @Get('/')
+  @UseGuards(AuthGuard())
   async list(): Promise<ListUserResponse[]> {
     const result = await this.listUsersUseCase.run();
     return result;
   }
 
   @Get('/:id')
+  @UseGuards(AuthGuard())
   async get(@Param('id') id: string): Promise<GetUserResponse> {
     const result = await this.getUserUseCase.run(id);
     return result;
@@ -53,6 +57,7 @@ export class UsersController {
   }
 
   @Put('/:id')
+  @UseGuards(AuthGuard())
   async put(
     @Param('id') id: string,
     @Body() body: UpdateUserRequest,
@@ -62,6 +67,7 @@ export class UsersController {
   }
 
   @Delete('/:id')
+  @UseGuards(AuthGuard())
   @HttpCode(204)
   async delete(@Param('id') id: string): Promise<void> {
     await this.deleteUserUseCase.run(id);

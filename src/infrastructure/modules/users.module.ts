@@ -13,9 +13,10 @@ import {
   UpdateUserUseCase,
   DeleteUserUseCase,
 } from 'src/useCases/user';
+import { AuthModule } from './auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
+  imports: [TypeOrmModule.forFeature([User]), AuthModule],
   providers: [
     {
       provide: ChiperServiceName,
